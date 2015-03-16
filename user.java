@@ -62,6 +62,11 @@ public class user {
 		isDriver = True;
 		isPassenger = False;
 	}
+   
+   public void offline(){
+      isDriver = False;
+      isPassenger = False;
+   }
 	
 	//Returns True if Passenger or False if Driver
 	public Boolean role(){
