@@ -1,35 +1,33 @@
-package easyRideControl;
+package D5;
 
 public class Control {
-/*
-we should have it so that if driver is true passenger has to be set to false in the model! and vice versa
- */
-	public void driverButton(User userName)
+
+	public void driverButton(user userName)
 	{
 		userName.setDriver();
 	}
 	
-	public void passengerButton(User userName)
+	public void passengerButton(user userName)
 	{
 		userName.setPassenger();
 	}
 	
-	public void editBioButton(User userName, String newBio)
+	public void editBioButton(user userName, String newBio)
 	{
 		userName.setBio(newBio);
 	}
 	// not 100% sure how this will go to view to display it
-	public void userBioButton(User userName)
+	public void userBioButton(user userName)
 	{
 		userName.getName();
 		userName.getBio();
 		userName.getRating();
 	}
-	public void logoutButton(User userName)
+	public void logoutButton(user userName)
 	{
 		userName.Offline();
 	}
-	public void userRating(User userName, float rating)
+	public void userRating(user userName, float rating)
 	{
 		userName.setRating(rating);
 	}

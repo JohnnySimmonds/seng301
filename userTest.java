@@ -10,38 +10,46 @@ public class userTest{
 		
 	@Test
 	public void test_name(){
-		user.setName("Ethan");
-		String name = user.getName();
+		testUser.setName("Ethan");
+		String name = testUser.getName();
 		if(name.equals("Ethan"))
 	}
 	
    @Test
 	public void test_bio(){
-		user.setBio("Hi I'm Ethan");
-		String bio = user.getBio();
+		testUser.setBio("Hi I'm Ethan");
+		String bio = testUser.getBio();
 		if(bio.equals("Hi I'm Ethan"))
 	}
    
    @Test
 	public void test_rating(){
-		user.setRating(5);
-      user.setRating(4);
-      user.setRating(4);
-      user.setRating(2);
-      user.setRating(3);
-		Float rating = user.getRating();
+		testUser.setRating(5);
+      testUser.setRating(4);
+      testUser.setRating(4);
+      testUser.setRating(2);
+      testUser.setRating(3);
+		Float rating = testUser.getRating();
 		if(rating == 3.6)
 	}
    
    @Test
    public void test_driver(){
-		user.setDriver;
-		if(user.role == False)
+		testUser.setDriver();
+		if(testUser.role == False)
 	}
 	
    @Test
    public void test_passenger(){
-		user.setPassenger;
-		if(user.role == True)
+		testUser.setPassenger();
+		if(testUser.role == True)
 	}
+   
+   @Test
+   public void test_offline(){
+      testUser.offline();
+      if(testUser.role == null)
+   }
+   
+   
 )
