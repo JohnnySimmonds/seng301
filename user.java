@@ -2,12 +2,12 @@ package D5;
 
 public class user {
 	
-	public String name;
-	public Float rating;
-	public int numRatings;
-	public String bio;
-	public Boolean isDriver;
-	public Boolean isPassenger;
+	private String name;
+	private Float rating;
+	private int numRatings;
+	private String bio;
+	private Boolean isDriver;
+	private Boolean isPassenger;
 	
 	
 	public user(){
@@ -24,11 +24,11 @@ public class user {
 	}
 	
 	public String getName(){
-		return name;
+		return this.name;
 	}
 	
 	public Float getRating(){
-		return Rating;
+		return this.rating;
 	}
 	
 	public void setRating(Float newRating){
@@ -46,26 +46,26 @@ public class user {
 	}
 	
 	public String getBio(){
-		return bio;
+		return this.bio;
 	}
 	
 	public void setBio(String newBio){
-		bio = newBio;
+		this.bio = newBio;
 	}
 	
 	public void setPassenger(){
-		isPassenger = True;
-		isDriver = False;
+		this.isPassenger = True;
+		this.isDriver = False;
 	}
 	
 	public void setDriver(){
-		isDriver = True;
-		isPassenger = False;
+		this.isDriver = True;
+		this.isPassenger = False;
 	}
    
    public void offline(){
-      isDriver = False;
-      isPassenger = False;
+      this.isDriver = False;
+      this.isPassenger = False;
    }
 	
 	//Returns True if Passenger or False if Driver

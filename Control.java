@@ -14,4 +14,23 @@ we should have it so that if driver is true passenger has to be set to false in 
 		userName.setPassenger();
 	}
 	
+	public void editBioButton(User userName, String newBio)
+	{
+		userName.setBio(newBio);
+	}
+	// not 100% sure how this will go to view to display it
+	public void userBioButton(User userName)
+	{
+		userName.getName();
+		userName.getBio();
+		userName.getRating();
+	}
+	public void logoutButton(User userName)
+	{
+		userName.Offline();
+	}
+	public void userRating(User userName, float rating)
+	{
+		userName.setRating(rating);
+	}
 }
