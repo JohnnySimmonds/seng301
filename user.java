@@ -24,11 +24,11 @@ public class user {
 	}
 	
 	public String getName(){
-		return this.name;
+		return name;
 	}
 	
 	public Float getRating(){
-		return this.rating;
+		return rating;
 	}
 	
 	public void setRating(Float newRating){
@@ -46,33 +46,35 @@ public class user {
 	}
 	
 	public String getBio(){
-		return this.bio;
+		return bio;
 	}
 	
-	public void setBio(String newBio){
-		this.bio = newBio;
+	public void setBio(String bio){
+		this.bio = bio;
 	}
 	
 	public void setPassenger(){
-		this.isPassenger = True;
-		this.isDriver = False;
+		isPassenger = True;
+		isDriver = False;
 	}
 	
 	public void setDriver(){
-		this.isDriver = True;
-		this.isPassenger = False;
+		isDriver = True;
+		isPassenger = False;
 	}
    
    public void offline(){
-      this.isDriver = False;
-      this.isPassenger = False;
+      isDriver = False;
+      isPassenger = False;
    }
 	
-	//Returns True if Passenger or False if Driver
+	//Returns True if Passenger or False if Driver, or null if neither
 	public Boolean role(){
 		if(isPassenger == True)
 			return True;
-		else
+		else if(isDriver == True)
 			return False;
+      else
+         return null;
 	}
 }
