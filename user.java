@@ -3,6 +3,7 @@ package D5;
 public class user {
 	
 	private String name;
+   private int id;
 	private Float rating;
 	private int numRatings;
 	private String bio;
@@ -12,6 +13,7 @@ public class user {
 	
 	public user(){
 		name = "";
+      id = 0;           //we can use something else for IDs later, an int works for now, start at 0 and add 1 for each user
 		rating = 0;
 		bio = "";
 		numRatings = 0;
@@ -26,6 +28,14 @@ public class user {
 	public String getName(){
 		return name;
 	}
+   
+   public int getID(){
+      return id;
+   }
+   
+   public void setID(int id){
+      this.id = id;
+   }
 	
 	public Float getRating(){
 		return rating;
