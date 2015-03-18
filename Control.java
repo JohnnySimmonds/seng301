@@ -27,7 +27,7 @@ public class Control {
 	{
 		userName.offline();
 	}
-	public void userRating(user userName, float rating)
+	public void userRating(user userName, double rating)
 	{
 		userName.setRating(rating);
 	}
