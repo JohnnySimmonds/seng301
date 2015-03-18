@@ -41,17 +41,19 @@ public class user {
 		return rating;
 	}
 	
-	public void setRating(double newRating){
+	public int getNum(){
+		return numRatings;
+	}
+	
+	public void addRating(double newRating){
 		if (numRatings == 0){
 			rating = newRating;
 		}
-		else if (numRatings == 1){
-			rating = (newRating + rating)/2;
-		}
 		else {
-			rating = rating*((numRatings-1)/numRatings) + (newRating/numRatings);
-			numRatings +=1;
+			double oldRating = rating*numRatings;
+			rating = (oldRating + newRating)/(numRatings + 1);
 		}
+		numRatings += 1;
 
 	}
 	

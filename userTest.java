@@ -1,6 +1,7 @@
 package D5;
 
-import org.junit.Test;
+import org.junit.*;
+import static org.junit.Assert.*;
 
 public class userTest{
 	
@@ -10,42 +11,42 @@ public class userTest{
 	public void test_name(){
 		testUser.setName("Ethan");
 		String name = testUser.getName();
-		if(name.equals("Ethan"));
+		assertTrue("Name should be Ethan", name.equals("Ethan"));
 	}
 	
    @Test
 	public void test_bio(){
 		testUser.setBio("Hi I'm Ethan");
 		String bio = testUser.getBio();
-		if(bio.equals("Hi I'm Ethan"));
+		assertTrue("Bio is not equal", bio.equals("Hi I'm Ethan"));
 	}
    
    @Test
 	public void test_rating(){
-		testUser.setRating(5);
-      testUser.setRating(4);
-      testUser.setRating(4);
-      testUser.setRating(2);
-      testUser.setRating(3);
+		testUser.addRating(5);
+		testUser.addRating(4);
+		testUser.addRating(4);
+		testUser.addRating(2);
+		testUser.addRating(3);
 		double rating = testUser.getRating();
-		if(rating == 3.6);
+		assertTrue(rating == 3.6);
 	}
    
    @Test
    public void test_driver(){
 		testUser.setDriver();
-		if(testUser.role() == false);
+		assertTrue(testUser.role() == false);
 	}
 	
    @Test
    public void test_passenger(){
 		testUser.setPassenger();
-		if(testUser.role() == true);
+		assertTrue(testUser.role() == true);
 	}
    
    @Test
    public void test_offline(){
       testUser.offline();
-      if(testUser.role() == null);
+      assertTrue(testUser.role() == null);
    }
 }

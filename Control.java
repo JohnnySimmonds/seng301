@@ -29,6 +29,6 @@ public class Control {
 	}
 	public void userRating(user userName, double rating)
 	{
-		userName.setRating(rating);
+		userName.addRating(rating);
 	}
 }
