@@ -25,7 +25,7 @@ public class Control {
 	}
 	public void logoutButton(user userName)
 	{
-		userName.Offline();
+		userName.offline();
 	}
 	public void userRating(user userName, float rating)
 	{

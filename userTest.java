@@ -1,7 +1,5 @@
 package D5;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class userTest{
@@ -12,14 +10,14 @@ public class userTest{
 	public void test_name(){
 		testUser.setName("Ethan");
 		String name = testUser.getName();
-		if(name.equals("Ethan"))
+		if(name.equals("Ethan"));
 	}
 	
    @Test
 	public void test_bio(){
 		testUser.setBio("Hi I'm Ethan");
 		String bio = testUser.getBio();
-		if(bio.equals("Hi I'm Ethan"))
+		if(bio.equals("Hi I'm Ethan"));
 	}
    
    @Test
@@ -29,27 +27,25 @@ public class userTest{
       testUser.setRating(4);
       testUser.setRating(2);
       testUser.setRating(3);
-		Float rating = testUser.getRating();
-		if(rating == 3.6)
+		double rating = testUser.getRating();
+		if(rating == 3.6);
 	}
    
    @Test
    public void test_driver(){
 		testUser.setDriver();
-		if(testUser.role == False)
+		if(testUser.role() == false);
 	}
 	
    @Test
    public void test_passenger(){
 		testUser.setPassenger();
-		if(testUser.role == True)
+		if(testUser.role() == true);
 	}
    
    @Test
    public void test_offline(){
       testUser.offline();
-      if(testUser.role == null)
+      if(testUser.role() == null);
    }
-   
-   
-)
+}

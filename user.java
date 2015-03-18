@@ -4,7 +4,7 @@ public class user {
 	
 	private String name;
    private int id;
-	private Float rating;
+	private double rating;
 	private int numRatings;
 	private String bio;
 	private Boolean isDriver;
@@ -17,8 +17,8 @@ public class user {
 		rating = 0;
 		bio = "";
 		numRatings = 0;
-		isDriver = False;
-		isPassenger = False;
+		isDriver = false;
+		isPassenger = false;
 	}
 	
 	public void setName(String name){
@@ -37,16 +37,16 @@ public class user {
       this.id = id;
    }
 	
-	public Float getRating(){
+	public double getRating(){
 		return rating;
 	}
 	
-	public void setRating(Float newRating){
-		if numRatings == 0{
+	public void setRating(double newRating){
+		if (numRatings == 0){
 			rating = newRating;
 		}
-		else if numRatings == 1{
-			rating = (newRating + rating)/2
+		else if (numRatings == 1){
+			rating = (newRating + rating)/2;
 		}
 		else {
 			rating = rating*((numRatings-1)/numRatings) + (newRating/numRatings);
@@ -64,26 +64,26 @@ public class user {
 	}
 	
 	public void setPassenger(){
-		isPassenger = True;
-		isDriver = False;
+		isPassenger = true;
+		isDriver = false;
 	}
 	
 	public void setDriver(){
-		isDriver = True;
-		isPassenger = False;
+		isDriver = true;
+		isPassenger = false;
 	}
    
    public void offline(){
-      isDriver = False;
-      isPassenger = False;
+      isDriver = false;
+      isPassenger = false;
    }
 	
 	//Returns True if Passenger or False if Driver, or null if neither
 	public Boolean role(){
-		if(isPassenger == True)
-			return True;
-		else if(isDriver == True)
-			return False;
+		if(isPassenger == true)
+			return true;
+		else if(isDriver == true)
+			return false;
       else
          return null;
 	}
