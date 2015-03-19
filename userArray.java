@@ -5,8 +5,8 @@ import java.util.*;
 public class userArray{
 
    private user[] uArray = new user[500];         //Array of 500 because this app won't go live
-   private List<Integer> driverList = new ArrayList<Integer>();      //ArrayList for drivers because it's easier
-   private List<Integer> passengerList = new ArrayList<Integer>();   //ditto ^^
+   private List<user> driverList = new ArrayList<user>();      //ArrayList for drivers because it's easier
+   private List<user> passengerList = new ArrayList<user>();   //ditto ^^
 
    
    public void addUser(user newUser){
@@ -34,42 +34,40 @@ public class userArray{
    }
    
    public void addDriver(user newDriver){
-      driverList.add(newDriver.getID());                            //add drivers id to driver list
+      driverList.add(newDriver);                            //add drivers id to driver list
    }
    
    public void removeDriver(user exDriver){
-      driverList.remove(exDriver.getID());                         //remove Driver
+      driverList.remove(exDriver);                         //remove Driver
    }
 
    public void addPassenger(user newPassenger){
-      driverList.add(newPassenger.getID());                            //add passengers id to passenger list
+      driverList.add(newPassenger);                            //add passengers id to passenger list
    }
    
    public void removePassenger(user exPassenger){
-      driverList.remove(exPassenger.getID());                          //remove passenger
+      driverList.remove(exPassenger);                          //remove passenger
    }
    
-   public int[] getDrivers(){											//returns an int array of all driver's IDs
+   public user[] getUsers(){											//gets the array of users
+	   return uArray;
+   }
+   
+   public user[] getDrivers(){											//returns a user array of all drivers
 	   for(int i = 0; i < uArray.length; i++){
 		   if(uArray[i].role() == false)								//if user == driver add to driverList
 			   addDriver(uArray[i]);
 	   }
-	   Integer[] list =  driverList.toArray(new Integer[driverList.size()]);	//convert to Integer array
-	   int dArray[] = new int[list.length];
-	   for(int i = 0; i < list.length; i++)										//convert Integer array to int array
-		   dArray[i] = list[i].intValue();
-	   return dArray;
+	   user[] list =  driverList.toArray(new user[driverList.size()]);		//convert to user array
+	   return list;
    }
    
-   public int[] getPassengers(){										//returns and int array of all passenger's IDs
+   public user[] getPassengers(){										//returns a user array of all passengers
 	   for(int i = 0; i < uArray.length; i++){					
 		   if(uArray[i].role() == true)									//if user == passenger and to passengerList
 			   addPassenger(uArray[i]);
 	   }
-	   Integer[] list =  passengerList.toArray(new Integer[passengerList.size()]);		//convert to Integer array
-	   int pArray[] = new int[list.length];
-	   for(int i = 0; i < list.length; i++)												//convert Integer array to int array
-		   pArray[i] = list[i].intValue();
-	   return pArray;
+	   user[] list =  passengerList.toArray(new user[passengerList.size()]);		//convert to user array
+	   return list;
    }
 }
