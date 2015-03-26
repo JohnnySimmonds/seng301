@@ -1,7 +1,18 @@
-package D5;
+package d5;
 
 public class Control {
 
+	private user name;
+
+
+	public Control()
+	{
+	name = new user();
+	}
+	public void loginButton(String userName, String password)
+	{
+		name.setName(userName);
+	}
 	public void driverButton(user userName)
 	{
 		userName.setDriver();
@@ -27,8 +38,13 @@ public class Control {
 	{
 		userName.offline();
 	}
-	public void userRating(user userName, double rating)
+	public void userRating(user userName, float rating)
 	{
-		userName.addRating(rating);
+		userName.setRating(rating);
+	}
+	
+	public user getUser()
+	{
+		return this.name;
 	}
 }

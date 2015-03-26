@@ -6,13 +6,24 @@ import junit.framework.Assert;
 public class controlTest {
 
 	@Test
+	public void logInButtonTest()
+	{
+		Control test = new Control();
+		String Name = "Johnny";
+		String password = "blahblah";
+		
+		test.loginButton(Name, password);
+		assertEquals("Johnny", test.getUser().getName());
+
+	}
+	@Test
 	public void driverButtonTest()
 	{
 		user userName = new user();
 		userName.setName("Johnny");
 		Control test = new Control();
 		test.driverButton(userName);
-		assertEquals(userName.role(), false);
+		assertEquals(false, userName.role());
 	}
 	@Test
 	public void passengerButtonTest()
@@ -21,7 +32,7 @@ public class controlTest {
 		userName.setName("Johnny");
 		Control test = new Control();
 		test.passengerButton(userName);
-		assertEquals(userName.role(), true);
+		assertEquals(true, userName.role());
 	}
 	@Test
 	public void editBioButtonTest()
@@ -30,7 +41,7 @@ public class controlTest {
 	
 		Control test = new Control();
 		test.editBioButton(userName, "Johnny");
-		assertEquals(userName.getBio(), "Johnny");
+		assertEquals("Johnny", userName.getBio());
 	}
 	/*
 	@Test
@@ -54,7 +65,7 @@ public class controlTest {
 	
 		Control test = new Control();
 		test.logoutButton(userName);
-		assertEquals(userName.role(), false);
+		assertEquals(false, userName.role());
 	}
 	@Test
 	public void userRatingButton()
@@ -64,6 +75,6 @@ public class controlTest {
 		float rating = (float) 4.5;
 		
 		test.userRating(userName, rating);
-		assertEquals(userName.getRating(), 4.5, 0.000000);
+		assertEquals(4.5, userName.getRating(), 0.000000);
 	}
 }
