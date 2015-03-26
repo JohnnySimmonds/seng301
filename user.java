@@ -1,9 +1,9 @@
-package D5;
+package d5;
 
 public class user {
 	
 	private String name;
-   private int id;
+	private int id;
 	private double rating;
 	private int numRatings;
 	private String bio;
@@ -13,7 +13,7 @@ public class user {
 	
 	public user(){
 		name = "";
-      id = 0;           //we can use something else for IDs later, an int works for now, start at 0 and add 1 for each user
+		id = 0;           //we can use something else for IDs later, an int works for now, start at 0 and add 1 for each user
 		rating = 0;
 		bio = "";
 		numRatings = 0;
@@ -41,19 +41,17 @@ public class user {
 		return rating;
 	}
 	
-	public int getNum(){
-		return numRatings;
-	}
-	
-	public void addRating(double newRating){
+	public void setRating(double newRating){
 		if (numRatings == 0){
 			rating = newRating;
 		}
-		else {
-			double oldRating = rating*numRatings;
-			rating = (oldRating + newRating)/(numRatings + 1);
+		else if (numRatings == 1){
+			rating = (newRating + rating)/2;
 		}
-		numRatings += 1;
+		else {
+			rating = rating*((numRatings-1)/numRatings) + (newRating/numRatings);
+			numRatings +=1;
+		}
 
 	}
 	
@@ -79,10 +77,15 @@ public class user {
       isDriver = false;
       isPassenger = false;
    }
-	
+	public void incNumRating()
+	{
+		this.numRatings++;
+	}
 	//Returns True if Passenger or False if Driver, or null if neither
 	public Boolean role(){
-		if(isPassenger == true)
+		if(isPassenger == false && isDriver == false)
+			return false;
+		else if(isPassenger == true)
 			return true;
 		else if(isDriver == true)
 			return false;
