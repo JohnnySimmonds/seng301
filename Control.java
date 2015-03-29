@@ -74,15 +74,17 @@ public class Control {
 	/*
 	 * TODO this is probably not part of control?
 	 */
-	public void printConvo(conversation currConvo)
+	public String printConvo(conversation currConvo)
 	{
 		message fullConvo = null;
 		fullConvo = currConvo.getConvo();
+		String printConvo = "";
 		while(fullConvo != null)
 		{
-		System.out.println(fullConvo.getContents());
+		printConvo = fullConvo.getsender().getName() + ": " + printConvo + " \n" + fullConvo.getContents();
 		fullConvo = fullConvo.getNext();
 		}
+		return printConvo;
 	}
 	public user getUser()
 	{

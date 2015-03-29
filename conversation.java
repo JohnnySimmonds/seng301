@@ -1,4 +1,4 @@
-package D5;
+package d5;
 
 public class conversation{
 	
@@ -28,9 +28,6 @@ public class conversation{
 			head = toDriver;												//needs to be head
 		}
 		else{
-			if(head.getNext() == null){
-				System.out.println("null");
-			}
 			while(current.getNext() != null){								//same as driverMessage
 				current = current.getNext();
 			}
