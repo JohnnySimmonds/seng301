@@ -3,11 +3,16 @@ package D5;
 public class Control {
 
 	private user name;
+	public userArray uArray;
+	public fakeData fakeIt;
 
 	public Control()
 	{
 	name = new user();
+	uArray = new userArray();
+	fakeIt = new fakeData(uArray);
 	}
+	
 	public void loginButton(String userName, String password)
 	{
 		name.setName(userName);
@@ -44,24 +49,34 @@ public class Control {
 		name.setBio(newBio);
 	}
 	
-	public conversation passengerSend (String message, user driver, conversation currConvo)
+	public String passengerSend (String message, String driver)
 	{
-		if(currConvo.getConvo() == null) //figure out how we know if this is the first instance of a convo
+		user temp = uArray.findUser(driver);		///for finding driver user
+		
+		if(name.findConvo(temp) == null) //figure out how we know if this is the first instance of a convo
 		{
-		conversation newConvo = new conversation(driver, name);
-		newConvo.passengerMessage(message);
-		return newConvo;
+			conversation newConvo = new conversation(temp, name);
+			newConvo.passengerMessage(message);
+			name.addConvo(newConvo);
+			return printConvo(newConvo);
 		}
 		else
 		{
-			currConvo.passengerMessage(message);
+			conversation tempConvo = name.findConvo(temp);
+			tempConvo.passengerMessage(message);
+			name.updateConvo(tempConvo, temp);
+			return printConvo(tempConvo);
 		}
-		return currConvo;
+		
 	}
-	public conversation driverSend(String message, conversation currConvo)
+	public String driverSend(String message, String passenger)
 	{
-		currConvo.driverMessage(message);
-		return currConvo;
+		user temp = uArray.findUser(passenger);
+		
+		conversation tempConvo = temp.findConvo(name);
+		tempConvo.driverMessage(message);
+		temp.updateConvo(tempConvo, name);
+		return printConvo(tempConvo);
 	}
 	/*
 	 * TODO this is probably not part of control?

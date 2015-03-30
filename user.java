@@ -9,7 +9,8 @@ public class user {
 	private String bio;
 	private Boolean isDriver;
 	private Boolean isPassenger;
-	
+	private conversation[] convo;
+	private int numConvo = 0;
 	
 	public user(){
 		name = "";
@@ -19,6 +20,7 @@ public class user {
 		numRatings = 0;
 		isDriver = false;
 		isPassenger = false;
+		convo = new conversation[500];
 	}
 	
 	public void setName(String name){
@@ -77,19 +79,41 @@ public class user {
       isDriver = false;
       isPassenger = false;
    }
+   
 	public void incNumRating()
 	{
 		this.numRatings++;
 	}
+	
 	//Returns True if Passenger or False if Driver, or null if neither
-	public Boolean role(){
-		if(isPassenger == false && isDriver == false)
-			return false;
-		else if(isPassenger == true)
-			return true;
+	public int role(){
+		if(isPassenger == true)
+			return 1;
 		else if(isDriver == true)
-			return false;
-      else
-         return null;
+			return 2;
+		else
+			return 0;
+	}
+	
+	public void addConvo(conversation converse){
+		convo[numConvo] = converse;
+		numConvo++;
+	}
+	
+	public conversation findConvo(user otherUser){
+		for(int i = 0; i < numConvo; i++){
+			if(convo[i].getDriver().getName().equals(otherUser.getName())){
+				return convo[i];
+			}
+		}
+		return null;
+	}
+	
+	public void updateConvo(conversation updated, user otherUser){
+		for(int i = 0; i < numConvo; i++){
+			if(convo[i].getDriver().getName().equals(otherUser.getName())){
+				convo[i] = updated;
+			}
+		}
 	}
 }

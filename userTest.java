@@ -29,24 +29,25 @@ public class userTest{
 		testUser.addRating(2);
 		testUser.addRating(3);
 		double rating = testUser.getRating();
+		System.out.println(rating);
 		assertTrue(rating == 3.6);
 	}
    
    @Test
    public void test_driver(){
 		testUser.setDriver();
-		assertTrue(testUser.role() == false);
+		assertTrue(testUser.role() == 2);
 	}
 	
    @Test
    public void test_passenger(){
 		testUser.setPassenger();
-		assertTrue(testUser.role() == true);
+		assertTrue(testUser.role() == 1);
 	}
    
    @Test
    public void test_offline(){
       testUser.offline();
-      assertTrue(testUser.role() == null);
+      assertTrue(testUser.role() == 0);
    }
 }
