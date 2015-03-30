@@ -1,4 +1,4 @@
-package d5;
+package D5;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import junit.framework.Assert;
@@ -52,7 +52,7 @@ public class controlTest {
 		Control test = new Control();
 		userName.setName("Johnny");
 		userName.setBio("I am sexy");
-		userName.setRating(5.0);
+		userName.addRating(5);
 		
 		test.userBioButton(userName);
 		assertEquals("Johnny", test.getUserName());
@@ -74,7 +74,7 @@ public class controlTest {
 	{
 		user userName = new user();
 		Control test = new Control();
-		float rating = (float) 4.5;
+		int rating = (int) 4.5;
 		
 		test.userRating(userName, rating);
 		assertEquals(4.5, userName.getRating(), 0.000000);

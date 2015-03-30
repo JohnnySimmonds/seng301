@@ -1,11 +1,8 @@
-package d5;
+package D5;
 
 public class Control {
 
 	private user name;
-	private String userName;
-	private String bio;
-	private float rating;
 
 	public Control()
 	{
@@ -18,45 +15,40 @@ public class Control {
 		//next check password? add user to the user array if its not there, otherwise log in. if new user send to new user menu, otherwise go to driver/passenger choice screen
 		//the check should probably be done in user?
 	}
-	public void driverButton(user userName)
+	public void driverButton()
 	{
-		userName.setDriver();
+		name.setDriver();
 	}
 	
-	public void passengerButton(user userName)
+	public void passengerButton()
 	{
-		userName.setPassenger();
+		name.setPassenger();
 	}
 	
-	public void editBioButton(user userName, String newBio)
+	public void editBioButton(String newBio)
 	{
-		userName.setBio(newBio);
+		name.setBio(newBio);
 	}
 	
-	public void userBioButton(user userName) // and for profile button
+	public void logoutButton()
 	{
-		this.setUserName(userName.getName());
-		this.setBio(userName.getBio());
-		this.setRating((float) userName.getRating());
+		name.offline();
 	}
-	public void logoutButton(user userName)
+	public void userRating(int rating)
 	{
-		userName.offline();
+		name.addRating(rating);
 	}
-	public void userRating(user userName, float rating)
-	{
-		userName.setRating(rating);
-	}
+	
 	public void nextButton(String newBio)
 	{
 		name.setBio(newBio);
 	}
 	
-	public conversation passengerSend (String message, user driver, user passenger, conversation currConvo)
+	public conversation passengerSend (String message, user driver, conversation currConvo)
 	{
-		if(currConvo == null) //figure out how we know if this is the first instance of a convo
+		if(currConvo.getConvo() == null) //figure out how we know if this is the first instance of a convo
 		{
-		conversation newConvo = new conversation(driver, passenger);
+		conversation newConvo = new conversation(driver, name);
 		newConvo.passengerMessage(message);
 		return newConvo;
 		}
@@ -88,24 +80,24 @@ public class Control {
 	}
 	public user getUser()
 	{
-		return this.name;
+		return name;
 	}
-	public float getRating() {
-		return rating;
+	public double getRating() {
+		return name.getRating();
 	}
-	public void setRating(float rating) {
-		this.rating = rating;
+	public void setRating(double rating) {
+		name.addRating(rating);
 	}
 	public String getUserName() {
-		return userName;
+		return name.getName();
 	}
 	public void setUserName(String userName) {
-		this.userName = userName;
+		name.setName(userName);
 	}
 	public String getBio() {
-		return bio;
+		return name.getBio();
 	}
 	public void setBio(String bio) {
-		this.bio = bio;
+		name.setBio(bio);
 	}
 }

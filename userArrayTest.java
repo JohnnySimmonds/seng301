@@ -14,7 +14,7 @@ public class userArrayTest{
 	
 	@Test
 	public void test_user_list(){
-		userArray.addUser(driver1);
+		//userArray.addUser(driver1);
 	}
 
 	

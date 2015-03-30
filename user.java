@@ -1,4 +1,4 @@
-package d5;
+package D5;
 
 public class user {
 	
@@ -41,7 +41,7 @@ public class user {
 		return rating;
 	}
 	
-	public void setRating(double newRating){
+	public void addRating(double newRating){
 		if (numRatings == 0){
 			rating = newRating;
 		}
