@@ -17,7 +17,7 @@ public class userArray{
    }
    
    public user findUser(String userName){
-	   for(int i=0; i < length +1; i++){
+	   for(int i=0; i < length; i++){
 		   if(uArray[i].getName().equals(userName)){
 			   return uArray[i];
 		   }
@@ -58,6 +58,7 @@ public class userArray{
    }
    
    public user[] getDrivers(){											//returns a user array of all drivers
+	   driverList.clear();
 	   for(int i = 0; i < length; i++){
 		   if(uArray[i].role() == 2)								//if user == driver add to driverList
 			   addDriver(uArray[i]);
@@ -67,6 +68,7 @@ public class userArray{
    }
    
    public user[] getPassengers(){										//returns a user array of all passengers
+	   passengerList.clear();
 	   for(int i = 0; i < length; i++){					
 		   if(uArray[i].role() == 1)									//if user == passenger and to passengerList
 			   addPassenger(uArray[i]);

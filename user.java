@@ -11,6 +11,8 @@ public class user {
 	private Boolean isPassenger;
 	private conversation[] convo;
 	private int numConvo = 0;
+	private boolean recieveInvite;
+	private boolean inRide;
 	
 	public user(){
 		name = "";
@@ -21,10 +23,28 @@ public class user {
 		isDriver = false;
 		isPassenger = false;
 		convo = new conversation[500];
+		recieveInvite = false;
+		inRide = false;
 	}
 	
 	public void setName(String name){
 		this.name = name;
+	}
+	
+	public void setInvite(boolean flag){
+		recieveInvite = flag;
+	}
+	
+	public boolean getInvite(){
+		return recieveInvite;
+	}
+	
+	public void setInRide(boolean flag){
+		inRide = flag;
+	}
+	
+	public boolean getInRide(){
+		return inRide;
 	}
 	
 	public String getName(){
@@ -46,13 +66,15 @@ public class user {
 	public void addRating(double newRating){
 		if (numRatings == 0){
 			rating = newRating;
+			numRatings++;
 		}
 		else if (numRatings == 1){
 			rating = (newRating + rating)/2;
+			numRatings++;
 		}
 		else {
 			rating = rating*((numRatings-1)/numRatings) + (newRating/numRatings);
-			numRatings +=1;
+			numRatings++;
 		}
 
 	}

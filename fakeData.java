@@ -6,6 +6,12 @@ public class fakeData{
 	private user ahmed;
 	private user michelle;
 	private user brandon;
+	private Control anneC;
+	private Control frankC;
+	private Control ahmedC;
+	private Control michelleC;
+	private Control brandonC;
+	
 	
 	public fakeData(userArray uArray){
 		anne = new user();
@@ -38,15 +44,27 @@ public class fakeData{
 		michelle.setDriver();
 		brandon.setDriver();
 		
-		uArray.addUser(anne);
-		uArray.addUser(frank);
-		uArray.addUser(ahmed);
-		uArray.addUser(michelle);
-		uArray.addUser(brandon);
-	}
-	
-	public void fakeDriver(user name){
+		anneC = new Control(anne, uArray);
+		frankC = new Control(frank, uArray);
+		ahmedC = new Control(ahmed, uArray);
+		michelleC = new Control(michelle, uArray);
+		brandonC = new Control(brandon, uArray);
+		
+		anneC.loginButton(anne.getName(), "");
+		frankC.loginButton(frank.getName(), "");
+		ahmedC.loginButton(ahmed.getName(), "");
+		michelleC.loginButton(michelle.getName(), "");
+		brandonC.loginButton(brandon.getName(), "");
 		
 	}
 	
+	public void fakeDriver(String name){
+		 anneC.passengerSend("Hey!", name);
+		 frankC.passengerSend("Watsup ;)", name);
+		 frankC.sendInvite(name);
+	}
+	
+	public void fakePassenger(String name){
+		
+	}
 }

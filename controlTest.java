@@ -19,65 +19,44 @@ public class controlTest {
 	@Test
 	public void driverButtonTest()
 	{
-		user userName = new user();
-		userName.setName("Johnny");
+
 		Control test = new Control();
-		test.driverButton(userName);
-		assertEquals(false, userName.role());
+		test.driverButton();
+		assertEquals(2, test.getUser().role());
 	}
 	@Test
 	public void passengerButtonTest()
 	{
-		user userName = new user();
-		userName.setName("Johnny");
 		Control test = new Control();
-		test.passengerButton(userName);
-		assertEquals(true, userName.role());
+		test.passengerButton();
+		assertEquals(1, test.getUser().role());
 	}
 	@Test
 	public void editBioButtonTest()
 	{
-		user userName = new user();
-	
 		Control test = new Control();
-		test.editBioButton(userName, "Johnny");
-		assertEquals("Johnny", userName.getBio());
+		test.editBioButton("Johnny");
+		assertEquals("Johnny", test.getUser().getBio());
 	}
 	
-	@Test
-	public void userBioButtonTest()
-	{
-		user userName = new user();
-	
-		Control test = new Control();
-		userName.setName("Johnny");
-		userName.setBio("I am sexy");
-		userName.addRating(5);
-		
-		test.userBioButton(userName);
-		assertEquals("Johnny", test.getUserName());
-		assertEquals("I am sexy", test.getBio());
-		assertEquals(5.0, test.getRating(), 0.00000);
-	}
-
 	@Test
 	public void logoutButton()
 	{
-		user userName = new user();
-	
 		Control test = new Control();
-		test.logoutButton(userName);
-		assertEquals(false, userName.role());
+		test.logoutButton();
+		assertEquals(0, test.getUser().role());
 	}
 	@Test
 	public void userRatingButton()
 	{
-		user userName = new user();
+	
 		Control test = new Control();
-		int rating = (int) 4.5;
+		double rating = 4.5;
 		
-		test.userRating(userName, rating);
-		assertEquals(4.5, userName.getRating(), 0.000000);
+		test.userRating(rating);
+		System.out.println(test.getRating());
+		
+		assertEquals(4.5, test.getRating(), 0.0);
 	}
 	@Test
 	public void nextButton()
@@ -93,52 +72,44 @@ public class controlTest {
 	public void passengerSendTest()
 	{
 		Control test = new Control();
-		user Johnny = new user();
+		test.getUser().setName("Johnny");
 		user Bob = new user();
-		conversation testConvo = null;
+		test.uArray.addUser(Bob);
+		String newConvo ="";
 		Bob.setDriver();
-		Johnny.setPassenger();
+		Bob.setName("Bob");
 		String passSend = "Hi how are you?";
 		String passSend2 = "Thats awesome!";
 		String passSend3 = "Cool";
 		
-		testConvo = test.passengerSend(passSend, Bob, Johnny, testConvo);
-		testConvo = test.passengerSend(passSend2, Bob, Johnny, testConvo);
-		testConvo = test.passengerSend(passSend3, Bob, Johnny, testConvo);
-		message convo = testConvo.getConvo();
+		newConvo = test.passengerSend(passSend, Bob.getName());
+		newConvo = test.passengerSend(passSend2, Bob.getName());
+		newConvo = test.passengerSend(passSend3, Bob.getName());
 		
-		
-		if(convo != null)
-		{
-			assertEquals(convo.getContents(), "Hi how are you?");
-		}
-		if(convo.getNext() != null)
-		{
-			assertEquals(convo.getNext().getContents(), "Thats awesome!");
-		
-		}
-		if(convo.getNext().getNext() != null)
-		{
-			assertEquals(convo.getNext().getNext().getContents(), "Cool");
-		}
+			assertEquals(newConvo, "Johnny:  \nHi how are you?\nJohnny:  \nThats awesome!\nJohnny:  \nCool");
 		
 	}
 	@Test
 	public void driverSendTest()
 	{
 		Control test = new Control();
-		user Johnny = new user();
+		
+		test.uArray.addUser(test.getUser());
+		test.getUser().setName("Johnny");
 		user Bob = new user();
-		conversation testConvo = null;
+		test.uArray.addUser(Bob);
+		String newConvo ="";
 		Bob.setDriver();
-		Johnny.setPassenger();
+		Bob.setName("Bob");
 		String passSend = "Hi how are you?";
 		String driveSend = "Good thanks and you?";
-		testConvo = test.passengerSend(passSend, Bob, Johnny, testConvo);
-		testConvo = test.driverSend(driveSend, testConvo);
-		message convo = testConvo.getConvo();
-		
-		assertEquals(convo.getNext().getContents(), "Good thanks and you?");
+		conversation tempConvo = new conversation(test.getUser(), Bob);
+		tempConvo.passengerMessage(passSend);
+		Bob.addConvo(tempConvo);
+		newConvo = test.driverSend(driveSend, Bob.getName());
+
+
+		assertEquals(newConvo, "Bob:  \nHi how are you?\nJohnny:  \nGood thanks and you?");
 		
 		
 	}
