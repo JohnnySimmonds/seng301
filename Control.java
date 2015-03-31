@@ -72,6 +72,7 @@ public class Control implements Serializable {
 	public void logoutButton()
 	{
 		name.offline();
+		
 	}
 	public void userRating(double rating)
 	{

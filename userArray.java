@@ -53,7 +53,7 @@ public class userArray{
    public user[] getDrivers(){											//returns a user array of all drivers
 	   driverList.clear();
 	   for(int i = 0; i < length; i++){
-		   if(uArray[i].role() == 2)								//if user == driver add to driverList
+		   if(uArray[i].role() == 2 && uArray[i].getInRide() == false)								//if user == driver add to driverList
 			   addDriver(uArray[i]);
 	   }
 	   user[] list =  driverList.toArray(new user[driverList.size()]);		//convert to user array
@@ -63,7 +63,7 @@ public class userArray{
    public user[] getPassengers(){										//returns a user array of all passengers
 	   passengerList.clear();
 	   for(int i = 0; i < length; i++){					
-		   if(uArray[i].role() == 1)									//if user == passenger and to passengerList
+		   if(uArray[i].role() == 1 && uArray[i].getInRide() == false)									//if user == passenger and to passengerList
 			   addPassenger(uArray[i]);
 	   }
 	   user[] list =  passengerList.toArray(new user[passengerList.size()]);		//convert to user array

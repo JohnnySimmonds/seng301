@@ -230,4 +230,23 @@ public class controlTest {
 		assertEquals("Johnny is still in ride", false, test.getUser().getInRide());
 		
 	}
+	@Test
+	public void passCheckTestPass()
+	{
+		Control test = new Control();
+		test.loginButton("Johnny", "g");
+		test.logoutButton();
+		assertEquals(true, test.passCheck("g", "Johnny"));
+		
+	}
+	@Test
+	public void passCheckTestFail()
+	{
+		Control test = new Control();
+		test.loginButton("Johnny", "g");
+		test.logoutButton();
+		assertEquals(false, test.passCheck("fail", "Johnny"));
+		
+	}
+	
 }
