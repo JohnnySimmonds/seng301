@@ -1,6 +1,9 @@
 package D5;
 
-public class Control {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Control implements Serializable {
 
 	private user name;
 	public userArray uArray;						//creates an array in this control instead of having an array on the server
@@ -20,28 +23,45 @@ public class Control {
 		fakeIt = null;
 	}
 	
-	public void loginButton(String userName, String password)
+	public boolean loginButton(String userName, String password)
 	{
+	
+		boolean passCheck = false;
 		if(uArray.findUser(userName) == null){
 			name.setName(userName);
+			name.setPassword(password);
 			uArray.addUser(name);
+			passCheck = true;
 		}
 		else{
-			name = uArray.findUser(userName);
+			passCheck = passCheck(password, userName);
+			if(passCheck)
+				name = uArray.findUser(userName);
 		}
+		return passCheck;
 		//check password here? or face book will do this for us
 		//next check password? add user to the user array if its not there, otherwise log in. if new user send to new user menu, otherwise go to driver/passenger choice screen
 		//the check should probably be done in user?
 		
 	}
+	public boolean passCheck(String password, String userName)
+	{
+		user temp = uArray.findUser(userName);
+		if(temp != null && temp.getPassword().equals(password))
+			return true;
+		
+		return false;
+	}
 	public void driverButton()
 	{
 		name.setDriver();
+		fakeIt.fakeDriver(name.getName());
 	}
 	
 	public void passengerButton()
 	{
 		name.setPassenger();
+		fakeIt.fakePassenger(name.getName());
 	}
 	
 	public void editBioButton(String newBio)
@@ -103,9 +123,17 @@ public class Control {
 		String printConvo = "";
 		while(fullConvo != null)
 		{
-		printConvo = fullConvo.getsender().getName() + ": " + printConvo + " \n" + fullConvo.getContents();
-		fullConvo = fullConvo.getNext();
-		}
+			if (printConvo.equals(""))
+			{
+				printConvo = fullConvo.getsender().getName() + ": " + printConvo + " \n" + fullConvo.getContents();
+				fullConvo = fullConvo.getNext();
+			}
+			else
+			{
+				printConvo = printConvo + "\n" + fullConvo.getsender().getName() + ": " + "\n" + fullConvo.getContents();
+				fullConvo = fullConvo.getNext();
+			}
+			}
 		return printConvo;
 	}
 	
@@ -146,6 +174,7 @@ public class Control {
 	
 	public void sendInvite(String otherUser){						//Sends an invite, takes the name of the driver
 		user temp = uArray.findUser(otherUser);
+		name.setInvite(true);
 		temp.setInvite(true);
 	}
 	
@@ -162,6 +191,7 @@ public class Control {
 	
 	public void cancelInvite(String otherUser){						//cancels an invite, call if you're a passenger
 		user temp = uArray.findUser(otherUser);
+		name.setInvite(false);
 		temp.setInvite(false);
 	}
 	
@@ -169,6 +199,7 @@ public class Control {
 		user temp = uArray.findUser(otherUser);
 		name.setInRide(false);
 		temp.setInRide(false);
+		fakeIt.fakeEndRide(name);
 	}
 	
 	public user getUser()
