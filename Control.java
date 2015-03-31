@@ -165,6 +165,12 @@ public class Control {
 		temp.setInvite(false);
 	}
 	
+	public void endRide(String otherUser){
+		user temp = uArray.findUser(otherUser);
+		name.setInRide(false);
+		temp.setInRide(false);
+	}
+	
 	public user getUser()
 	{
 		return name;
