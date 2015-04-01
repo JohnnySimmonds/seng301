@@ -1,6 +1,8 @@
 package D5;
 
-public class user {
+import java.io.Serializable;
+
+public class user implements Serializable{
 	
 	private String name;
 	private int id;

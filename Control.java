@@ -147,7 +147,8 @@ public class Control implements Serializable {
 		user tempDriver = uArray.findUser(driver);
 		conversation tempConvo = tempPassenger.findConvo(tempDriver);
 		message fullConvo = null;
-		fullConvo = tempConvo.getConvo();
+		if(tempConvo != null)
+			fullConvo = tempConvo.getConvo();
 		String printConvo = "";
 		while(fullConvo != null)
 		{
@@ -183,7 +184,7 @@ public class Control implements Serializable {
 	public String[] getDrivers(){							//Returns string[] of all drivers on the app at the moment
 		user[] drivers = uArray.getDrivers();
 		int i = 0;
-		String[] driverNames = new String[300];
+		String[] driverNames = new String[drivers.length];
 		while(i < drivers.length && drivers[i] != null){
 			driverNames[i] = drivers[i].getName();
 			i++;
@@ -194,7 +195,7 @@ public class Control implements Serializable {
 	public String[] getPassengers(){								//returns string[] of all passengers on the app at the moment
 		user[] passengers = uArray.getPassengers();
 		int i = 0;
-		String[] passengerNames = new String[300];
+		String[] passengerNames = new String[passengers.length];
 		while(i < passengers.length && passengers[i] != null){
 			passengerNames[i] = passengers[i].getName();
 			i++;
@@ -208,7 +209,9 @@ public class Control implements Serializable {
 		temp.setInvite(true);
 	}
 	
-
+	public boolean checkForInvites(){
+		return name.getInvite();
+	}
 	
 	public void acceptInvite(String otherUser){					//accepts an invite, call if you're a driver
 		name.setInRide(true);

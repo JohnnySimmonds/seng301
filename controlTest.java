@@ -319,4 +319,20 @@ public class controlTest {
 		System.out.print(listOfNames);
 		assertEquals("Anne\nFrank\nJohnny\n", listOfNames);
 	}
+	@Test
+	public void printConvoTest()
+	{
+		Control test = new Control();
+		Control bobT = new Control();
+		String convo = "";
+		bobT.loginButton("Bob", "b");
+		test.loginButton("Johnny", "b");
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		bobT.getUser().setDriver();
+		test.getUser().setPassenger();
+		convo = test.printConvo(test.getUserName(), bobT.getUserName());
+		
+		assertEquals("", convo);
+	}
 }
