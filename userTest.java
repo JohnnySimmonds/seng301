@@ -30,7 +30,7 @@ public class userTest{
 		testUser.addRating(3);
 		double rating = testUser.getRating();
 		System.out.println(rating);
-		assertTrue(rating == 3.6);
+		assertTrue("Rating is not correct", rating == 3.6);
 	}
    
    @Test
