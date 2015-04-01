@@ -50,7 +50,14 @@ public class controlTest {
 		
 
 	}
-	
+	@Test public void nextButtonTest()
+	{
+		Control test = new Control();
+		test.loginButton("Johnny", "g");
+		test.nextButton("This is the greatest app ever!");
+		assertEquals("This is the greatest app ever!", test.getBio());
+		
+	}
 	@Test
 	public void driverButtonTest()
 	{
@@ -133,22 +140,23 @@ public class controlTest {
 	public void driverSendTest()
 	{
 		Control test = new Control();
-		
+		Control bobT = new Control();
 		test.loginButton("Johnny","Cool");
-		user Bob = new user();
-		test.uArray.addUser(Bob);
+		bobT.loginButton("Bob", "g");
+		
+		test.uArray.addUser(bobT.getUser());
 		String newConvo ="";
-		Bob.setDriver();
-		Bob.setName("Bob");
+		bobT.getUser().setDriver();
 		String passSend = "Hi how are you?";
 		String driveSend = "Good thanks and you?";
-		conversation tempConvo = new conversation(test.getUser(), Bob);
+		String driveSend2 = "I will come getcha";
+		conversation tempConvo = new conversation(test.getUser(), bobT.getUser());
 		tempConvo.passengerMessage(passSend);
-		Bob.addConvo(tempConvo);
-		newConvo = test.driverSend(driveSend, Bob.getName());
+		bobT.getUser().addConvo(tempConvo);
+		newConvo = test.driverSend(driveSend, bobT.getUser().getName());
+		newConvo = test.driverSend(driveSend2, bobT.getUser().getName());
 
-
-		assertEquals(newConvo, "Bob:  \nHi how are you?\nJohnny: \nGood thanks and you?");
+		assertEquals(newConvo, "Bob:  \nHi how are you?\nJohnny: \nGood thanks and you?\nJohnny: \nI will come getcha");
 		
 		
 	}
@@ -156,38 +164,38 @@ public class controlTest {
 	public void inviteRideTest()
 	{
 		Control test = new Control();
-		Control BobT = new Control();
-		BobT.loginButton("Bob", "g");
+		Control bobT = new Control();
+		bobT.loginButton("Bob", "g");
 		test.loginButton("Johnny","Cool");
-		test.uArray.addUser(BobT.getUser());
-		BobT.uArray.addUser(test.getUser());
-		BobT.getUser().setDriver();
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		bobT.getUser().setDriver();
 		test.getUser().setPassenger();
-		test.sendInvite(BobT.getUserName());
+		test.sendInvite(bobT.getUserName());
 		
-		assertEquals(true, BobT.getUser().getInvite());
+		assertEquals(true, bobT.getUser().getInvite());
 	}
 	@Test
 	public void cancelInviteRideTest()
 	{
 		Control test = new Control();
-		Control BobT = new Control();
-		BobT.loginButton("Bob", "g");
+		Control bobT = new Control();
+		bobT.loginButton("Bob", "g");
 		test.loginButton("Johnny","Cool");
-		test.uArray.addUser(BobT.getUser());
-		BobT.uArray.addUser(test.getUser());
-		BobT.getUser().setDriver();
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		bobT.getUser().setDriver();
 		test.getUser().setPassenger();
-		test.sendInvite(BobT.getUserName());
-		test.cancelInvite(BobT.getUserName());
+		test.sendInvite(bobT.getUserName());
+		test.cancelInvite(bobT.getUserName());
 		
-		assertEquals(false, BobT.getUser().getInvite());
+		assertEquals(false, bobT.getUser().getInvite());
 		assertEquals(false, test.getUser().getInvite());
 		
-		test.sendInvite(BobT.getUserName());
-		BobT.cancelInvite(test.getUserName());
+		test.sendInvite(bobT.getUserName());
+		bobT.cancelInvite(test.getUserName());
 		
-		assertEquals(false, BobT.getUser().getInvite());
+		assertEquals(false, bobT.getUser().getInvite());
 		assertEquals(false, test.getUser().getInvite());
 			
 	}
@@ -195,18 +203,18 @@ public class controlTest {
 	public void inRideTest()
 	{
 		Control test = new Control();
-		Control BobT = new Control();
-		BobT.loginButton("Bob", "g");
+		Control bobT = new Control();
+		bobT.loginButton("Bob", "g");
 		test.loginButton("Johnny","Cool");
-		test.uArray.addUser(BobT.getUser());
-		BobT.uArray.addUser(test.getUser());
-		BobT.getUser().setDriver();
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		bobT.getUser().setDriver();
 		test.getUser().setPassenger();
 
-		test.sendInvite(BobT.getUserName());
-		BobT.acceptInvite(test.getUserName());
+		test.sendInvite(bobT.getUserName());
+		bobT.acceptInvite(test.getUserName());
 		assertEquals("Johnny is not in ride", true, test.getUser().getInRide());
-		assertEquals("Bob is not in ride", true, BobT.getUser().getInRide());
+		assertEquals("Bob is not in ride", true, bobT.getUser().getInRide());
 		
 	
 	}
@@ -214,19 +222,19 @@ public class controlTest {
 	public void endRideTest()
 	{
 		Control test = new Control();
-		Control BobT = new Control();
-		BobT.loginButton("Bob", "g");
+		Control bobT = new Control();
+		bobT.loginButton("Bob", "g");
 		test.loginButton("Johnny","Cool");
-		test.uArray.addUser(BobT.getUser());
-		BobT.uArray.addUser(test.getUser());
-		BobT.getUser().setDriver();
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		bobT.getUser().setDriver();
 		test.getUser().setPassenger();
 
-		test.sendInvite(BobT.getUserName());
-		BobT.acceptInvite(test.getUserName());
+		test.sendInvite(bobT.getUserName());
+		bobT.acceptInvite(test.getUserName());
 		
-		BobT.endRide(test.getUserName());
-		assertEquals("Bob is still in ride", false, BobT.getUser().getInRide());
+		bobT.endRide(test.getUserName());
+		assertEquals("Bob is still in ride", false, bobT.getUser().getInRide());
 		assertEquals("Johnny is still in ride", false, test.getUser().getInRide());
 		
 	}
@@ -248,5 +256,67 @@ public class controlTest {
 		assertEquals(false, test.passCheck("fail", "Johnny"));
 		
 	}
-	
+	@Test
+	public void driverPassengerListTest() // tests checkDriverMessages
+	{
+		Control test = new Control();
+		Control bobT = new Control();
+		bobT.loginButton("Bob", "b");
+		test.loginButton("Johnny", "b");
+		bobT.getUser().setDriver();
+		test.getUser().setPassenger();
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		test.passengerSend("Hi", bobT.getUserName());
+		String[] listCheck = bobT.checkDriverMessages();
+		String listOfNames = "";
+		for(int i =0; listCheck[i] != null; i++)
+		{
+			listOfNames = listOfNames  + listCheck[i] + "\n";
+		}
+		System.out.print(listOfNames);
+		assertEquals("Johnny\n", listOfNames);
+	}
+	@Test
+	public void driverListTest()
+	{
+		Control test = new Control();
+		Control bobT = new Control();
+		bobT.loginButton("Bob", "b");
+		test.loginButton("Johnny", "b");
+		bobT.getUser().setDriver();
+		test.getUser().setPassenger();
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		test.passengerSend("Hi", bobT.getUserName());
+		String[] listCheck = test.getDrivers();
+		String listOfNames = "";
+		for(int i =0; (i < listCheck.length && listCheck[i] != null); i++)
+		{
+			listOfNames = listOfNames  + listCheck[i] + "\n";
+		}
+		System.out.print(listOfNames);
+		assertEquals("Ahmed\nMichelle\nBrandon\nBob\n", listOfNames);
+	}
+	@Test
+	public void passengerListTest()
+	{
+		Control test = new Control();
+		Control bobT = new Control();
+		bobT.loginButton("Bob", "b");
+		test.loginButton("Johnny", "b");
+		bobT.getUser().setDriver();
+		test.getUser().setPassenger();
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		test.passengerSend("Hi", bobT.getUserName());
+		String[] listCheck = bobT.getPassengers();
+		String listOfNames = "";
+		for(int i =0; (i < listCheck.length && listCheck[i] != null); i++)
+		{
+			listOfNames = listOfNames  + listCheck[i] + "\n";
+		}
+		System.out.print(listOfNames);
+		assertEquals("Anne\nFrank\nJohnny\n", listOfNames);
+	}
 }
