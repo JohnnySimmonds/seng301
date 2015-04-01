@@ -118,19 +118,20 @@ public class controlTest {
 	public void passengerSendTest()
 	{
 		Control test = new Control();
+		Control bobT = new Control();
 		test.loginButton("Johnny", "Cool");
-		user Bob = new user();
-		test.uArray.addUser(Bob);
+		bobT.loginButton("Bob", "g");
+		
+		test.uArray.addUser(bobT.getUser());
 		String newConvo ="";
-		Bob.setDriver();
-		Bob.setName("Bob");
+		bobT.getUser().setDriver();
 		String passSend = "Hi how are you?";
 		String passSend2 = "Thats awesome!";
 		String passSend3 = "Cool";
 		
-		newConvo = test.passengerSend(passSend, Bob.getName());
-		newConvo = test.passengerSend(passSend2, Bob.getName());
-		newConvo = test.passengerSend(passSend3, Bob.getName());
+		newConvo = test.passengerSend(passSend, bobT.getUserName());
+		newConvo = test.passengerSend(passSend2, bobT.getUserName());
+		newConvo = test.passengerSend(passSend3, bobT.getUserName());
 		
 
 		assertEquals(newConvo, "Johnny:  \nHi how are you?\nJohnny: \nThats awesome!\nJohnny: \nCool");
@@ -159,6 +160,29 @@ public class controlTest {
 		assertEquals(newConvo, "Bob:  \nHi how are you?\nJohnny: \nGood thanks and you?\nJohnny: \nI will come getcha");
 		
 		
+	}
+	@Test
+	public void saveConvoTest()
+	{
+		Control test = new Control();
+		Control bobT = new Control();
+		test.loginButton("Johnny", "Cool");
+		bobT.loginButton("Bob", "g");
+		
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		String newConvo ="";
+		bobT.getUser().setDriver();
+		String passSend = "Hi how are you?";
+		String passSend2 = "Thats awesome!";
+		String passSend3 = "Cool";
+		
+		newConvo = test.passengerSend(passSend, bobT.getUserName());
+		newConvo = test.passengerSend(passSend2, bobT.getUserName());
+		newConvo = test.passengerSend(passSend3, bobT.getUserName());
+		
+		newConvo = test.printConvo(test.getUserName(), bobT.getUserName());
+		assertEquals("Johnny:  \nHi how are you?\nJohnny: \nThats awesome!\nJohnny: \nCool", newConvo);
 	}
 	@Test
 	public void inviteRideTest()
