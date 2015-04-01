@@ -54,7 +54,7 @@ public class controlTest {
 	{
 		Control test = new Control();
 		test.loginButton("Johnny", "g");
-		test.nextButton("This is the greatest app ever!");
+		test.firstNextButton("This is the greatest app ever!");
 		assertEquals("This is the greatest app ever!", test.getBio());
 		
 	}
