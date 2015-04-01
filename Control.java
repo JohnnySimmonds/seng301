@@ -103,6 +103,8 @@ public class Control implements Serializable {
 	 */
 	public void firstNextButton(String newBio)
 	{
+		if(newBio.equals(""))
+			newBio = "I have not set my bio!";
 		name.setBio(newBio);
 	}
 		/*
