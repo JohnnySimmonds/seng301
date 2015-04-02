@@ -16,6 +16,8 @@ public class controlTest {
 		assertEquals(true, tester);
 		assertEquals("Johnny", test.getUser().getName());
 		assertEquals(password, test.getUser().getPassword());
+		test.firstNextButton("");
+		assertEquals("I have not set my bio!", test.getBio());
 
 	}
 	@Test
@@ -123,8 +125,10 @@ public class controlTest {
 		bobT.loginButton("Bob", "g");
 		
 		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
 		String newConvo ="";
 		bobT.getUser().setDriver();
+		test.getUser().setPassenger();
 		String passSend = "Hi how are you?";
 		String passSend2 = "Thats awesome!";
 		String passSend3 = "Cool";
@@ -134,7 +138,7 @@ public class controlTest {
 		newConvo = test.passengerSend(passSend3, bobT.getUserName());
 		
 
-		assertEquals(newConvo, "Johnny:  \nHi how are you?\nJohnny: \nThats awesome!\nJohnny: \nCool");
+		assertEquals("Johnny:  \nHi how are you?\nJohnny: \nThats awesome!\nJohnny: \nCool", newConvo);
 		
 	}
 	@Test
@@ -147,7 +151,8 @@ public class controlTest {
 		
 		test.uArray.addUser(bobT.getUser());
 		String newConvo ="";
-		bobT.getUser().setDriver();
+		bobT.getUser().setPassenger();
+		test.getUser().setDriver();
 		String passSend = "Hi how are you?";
 		String driveSend = "Good thanks and you?";
 		String driveSend2 = "I will come getcha";
@@ -157,7 +162,7 @@ public class controlTest {
 		newConvo = test.driverSend(driveSend, bobT.getUser().getName());
 		newConvo = test.driverSend(driveSend2, bobT.getUser().getName());
 
-		assertEquals(newConvo, "Bob:  \nHi how are you?\nJohnny: \nGood thanks and you?\nJohnny: \nI will come getcha");
+		assertEquals("Bob:  \nHi how are you?\nJohnny: \nGood thanks and you?\nJohnny: \nI will come getcha", newConvo);
 		
 		
 	}
@@ -173,6 +178,7 @@ public class controlTest {
 		bobT.uArray.addUser(test.getUser());
 		String newConvo ="";
 		bobT.getUser().setDriver();
+		test.getUser().setPassenger();
 		String passSend = "Hi how are you?";
 		String passSend2 = "Thats awesome!";
 		String passSend3 = "Cool";
@@ -223,7 +229,8 @@ public class controlTest {
 		bobT.endRide(test.getUserName());
 		assertEquals("Bob is still in ride", false, bobT.getUser().getInRide());
 		assertEquals("Johnny is still in ride", false, test.getUser().getInRide());
-		
+		assertEquals(false, test.checkInRideWith(bobT.getUserName()));
+		assertEquals(false, bobT.checkInRideWith(test.getUserName()));
 	}
 	@Test
 	public void passCheckTestPass()
@@ -321,5 +328,44 @@ public class controlTest {
 		convo = test.printConvo(test.getUserName(), bobT.getUserName());
 		
 		assertEquals("", convo);
+		convo = test.printConvo(bobT.getUserName(), test.getUserName());
+		assertEquals("",convo);
+	}
+	@Test
+	public void testInvite()
+	{
+		Control test = new Control();
+		Control bobT = new Control();
+		test.loginButton("Johnny", "Cool");
+		bobT.loginButton("Bob", "g");
+		
+		test.uArray.addUser(bobT.getUser());
+		bobT.uArray.addUser(test.getUser());
+		String newConvo ="";
+		bobT.getUser().setDriver();
+		test.getUser().setPassenger();
+		String passSend = "Hi how are you?";
+		String passSend2 = "Thats awesome!";
+		String passSend3 = "Cool";
+		
+		newConvo = test.passengerSend(passSend, bobT.getUserName());
+		newConvo = test.passengerSend(passSend2, bobT.getUserName());
+		newConvo = test.passengerSend(passSend3, bobT.getUserName());
+		
+		test.sendInvite(bobT.getUserName());
+		assertEquals(true, bobT.checkForInvites(test.getUserName()));
+		
+		test.cancelInvite(bobT.getUserName());							// checks the passenger canceling the request
+		assertEquals(false, bobT.checkForInvites(test.getUserName()));
+		
+		test.sendInvite(bobT.getUserName());
+		bobT.cancelInvite(test.getUserName());							//checks the driver canceling the request
+		assertEquals(false, bobT.checkForInvites(test.getUserName()));
+		
+		test.sendInvite(bobT.getUserName());
+		bobT.acceptInvite(test.getUserName());
+		assertEquals(true, bobT.checkInRideWith(test.getUserName()));
+		assertEquals(true, test.checkInRideWith(bobT.getUserName()));
+		
 	}
 }
