@@ -1,9 +1,9 @@
 package D5;
 
-import java.io.Serializable;
 
-@SuppressWarnings("serial")
-public class Control implements Serializable {
+
+
+public class Control {
 
 	private user name;
 	public userArray uArray;						//creates an array in this control instead of having an array on the server
@@ -207,32 +207,36 @@ public class Control implements Serializable {
 	
 	public void sendInvite(String otherUser){						//Sends an invite, takes the name of the driver
 		user temp = uArray.findUser(otherUser);
-		name.setInvite(true);
-		temp.setInvite(true);
+		temp.addInvite(name.getName());
+	
 		fakeIt.fakePassenger(name.getName());
 	}
 	
 	public void fakeSendInvite(String otherUser){						//Sends an invite for a fake user, takes the name of the driver
 		user temp = uArray.findUser(otherUser);
-		name.setInvite(true);
-		temp.setInvite(true);
+		temp.addInvite(name.getName());
+		
 	}
 	
-	public boolean checkForInvites(){
-		return name.getInvite();
+	public boolean checkForInvites(String passenger){
+		
+		return name.findInvite(passenger);
 	}
 	
-	public void acceptInvite(String otherUser){					//accepts an invite, call if you're a driver
+	public void acceptInvite(String passenger){					//accepts an invite, call if you're a driver
 		name.setInRide(true);
-		name.setInvite(false);
-		user temp = uArray.findUser(otherUser);
+		
+		user temp = uArray.findUser(passenger);
+		name.removeInvite(passenger);
 		temp.setInRide(true);
 	}
 	
 	public void cancelInvite(String otherUser){						//cancels an invite, call if you're a passenger
 		user temp = uArray.findUser(otherUser);
-		name.setInvite(false);
-		temp.setInvite(false);
+		if(temp.role()==1)
+			name.removeInvite(otherUser);
+		else
+			temp.removeInvite(name.getName());
 	}
 	
 	public void endRide(String otherUser){
@@ -241,7 +245,10 @@ public class Control implements Serializable {
 		temp.setInRide(false);
 		fakeIt.fakeEndRide(name);
 	}
-	
+	public user findUser(String name)
+	{
+		return uArray.findUser(name);
+	}
 	public user getUser()
 	{
 		return name;

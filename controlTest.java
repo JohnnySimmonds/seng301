@@ -184,45 +184,8 @@ public class controlTest {
 		newConvo = test.printConvo(test.getUserName(), bobT.getUserName());
 		assertEquals("Johnny:  \nHi how are you?\nJohnny: \nThats awesome!\nJohnny: \nCool", newConvo);
 	}
-	@Test
-	public void inviteRideTest()
-	{
-		Control test = new Control();
-		Control bobT = new Control();
-		bobT.loginButton("Bob", "g");
-		test.loginButton("Johnny","Cool");
-		test.uArray.addUser(bobT.getUser());
-		bobT.uArray.addUser(test.getUser());
-		bobT.getUser().setDriver();
-		test.getUser().setPassenger();
-		test.sendInvite(bobT.getUserName());
-		
-		assertEquals(true, bobT.getUser().getInvite());
-	}
-	@Test
-	public void cancelInviteRideTest()
-	{
-		Control test = new Control();
-		Control bobT = new Control();
-		bobT.loginButton("Bob", "g");
-		test.loginButton("Johnny","Cool");
-		test.uArray.addUser(bobT.getUser());
-		bobT.uArray.addUser(test.getUser());
-		bobT.getUser().setDriver();
-		test.getUser().setPassenger();
-		test.sendInvite(bobT.getUserName());
-		test.cancelInvite(bobT.getUserName());
-		
-		assertEquals(false, bobT.getUser().getInvite());
-		assertEquals(false, test.getUser().getInvite());
-		
-		test.sendInvite(bobT.getUserName());
-		bobT.cancelInvite(test.getUserName());
-		
-		assertEquals(false, bobT.getUser().getInvite());
-		assertEquals(false, test.getUser().getInvite());
-			
-	}
+
+
 	@Test
 	public void inRideTest()
 	{
