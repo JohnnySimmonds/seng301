@@ -253,7 +253,14 @@ public class Control {
 		else
 			temp.removeInvite(name.getName());
 	}
-	
+	public boolean checkInRideWith(String otherUser)
+	{
+		
+		if(otherUser.equals(name.getInRideWith()))
+				return true;
+		
+		return false;
+	}
 	public void endRide(String otherUser){
 		user temp = uArray.findUser(otherUser);
 		name.setInRide(false);
