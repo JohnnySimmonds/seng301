@@ -144,10 +144,22 @@ public class Control {
 		return printConvo(passenger, name.getName());
 	}
 
-	public String printConvo(String passenger, String driver)					//returns a string with all the messages in a conversation
+	public String printConvo(String user1, String user2)					//returns a string with all the messages in a conversation
 	{
-		user tempPassenger = uArray.findUser(passenger);
-		user tempDriver = uArray.findUser(driver);
+		user tempPassenger;
+		user tempDriver;
+		user temp1 = uArray.findUser(user1);                               //used for figuring out who the driver and who the passenger is
+		user temp2 = uArray.findUser(user2);
+		if(temp1.role() == 1)
+		{
+			tempPassenger = temp1;
+			tempDriver = temp2;
+		}
+		else
+		{
+			tempPassenger = temp2;
+			tempDriver = temp1;
+		}
 		conversation tempConvo = tempPassenger.findConvo(tempDriver);
 		message fullConvo = null;
 		if(tempConvo != null)
@@ -229,6 +241,8 @@ public class Control {
 		
 		user temp = uArray.findUser(passenger);
 		name.removeInvite(passenger);
+		temp.setInRideWith(name.getName());
+		name.setInRideWith(passenger);
 		temp.setInRide(true);
 	}
 	
@@ -245,6 +259,8 @@ public class Control {
 		name.setInRide(false);
 		temp.setInRide(false);
 		fakeIt.fakeEndRide(name);
+		temp.setInRideWith("");
+		name.setInRideWith("");
 	}
 	public user findUser(String name)
 	{

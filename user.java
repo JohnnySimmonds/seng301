@@ -16,6 +16,7 @@ public class user{
 	private int numConvo = 0;
 	private boolean inRide;
 	private String[] invites;
+	private String inRideWith = "";
 	private int numInvites = 0;
 	
 	public user(){
@@ -166,5 +167,13 @@ public class user{
 				convo[i] = updated;
 			}
 		}
+	}
+
+	public String getInRideWith() {
+		return inRideWith;
+	}
+
+	public void setInRideWith(String inRideWith) {
+		this.inRideWith = inRideWith;
 	}
 }
