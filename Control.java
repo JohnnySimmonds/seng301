@@ -49,6 +49,7 @@ public class Control {
 		return passCheck;
 		
 	}
+	
 	/*
 	 * Tests to see if the password entered matches the password the user has saved to there account.
 	 */

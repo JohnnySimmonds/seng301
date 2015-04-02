@@ -71,7 +71,7 @@ public class user{
 	public boolean findInvite(String passenger){
 		for(int i = 0; i < numInvites; i++)
 		{
-			if(invites[i].equals(passenger))
+			if(invites[i] != null && invites[i].equals(passenger))
 				return true;
 		}
 		return false;
